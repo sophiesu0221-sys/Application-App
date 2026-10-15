@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div class="app">
+
+      <!-- WELCOME SCREEN -->
+      <section id="welcome-screen">
+        <div class="reminder-card">
+          <h1>Reminder</h1>
+
+          <p>
+            “You don't have to be great to start,
+            but you have to start to be great.”
+          </p>
+
+          <button id="StartButton" type="button">
+            You've Got This
+          </button>
+        </div>
+      </section>
+
+      <!-- MAIN BOARD -->
+      <section id="tracker-screen" hidden>
+
+        <header class="board-header">
+          <h1>Home ✳</h1>
+          <p>Sophie's Workspace</p>
+        </header>
+
+        <main class="board">
+
+          <!-- Stacked Folders -->
+          <div class="folder-stack">
+
+            <div class="folder materials-folder">
+              <div class="folder-tab">MATERIALS</div>
+
+              <div class="folder-contents">
+                <div class="paper">Resume</div>
+                <div class="paper">Cover Letter</div>
+              </div>
+
+              <div class="folder-front"></div>
+            </div>
+
+            <div class="folder applications-folder">
+              <div class="folder-tab">APPLICATIONS</div>
+
+              <div class="folder-contents">
+                <div class="paper">Case 001</div>
+                <div class="paper">Case 002</div>
+              </div>
+
+              <div class="folder-front"></div>
+            </div>
+
+          </div>
+
+          <!-- Calendar -->
+          
+<!-- Draggable Calendar -->
+<div class="calendar-widget" id="calendar-widget">
+
+  <div class="calendar-header">
+    <span>✳ MY CALENDAR</span>
+  </div>
+
+  <div class="calendar-navigation">
+    <button id="previous-month" type="button">‹</button>
+    <h3 id="calendar-month"></h3>
+    <button id="next-month" type="button">›</button>
+  </div>
+
+  <div class="calendar-body">
+    <div id="calendar-grid"></div>
+  </div>
+
+  <div class="calendar-footer">
+
+<div id="calendar-tooltip" hidden></div>
+
+    <p>○ Application Opens</p>
+    <p>✳ Application Deadline</p>
+  </div>
+
+</div>
+
+         
+<!-- Sticky Notes -->
+
+<div class="sticky-note todo-note" id="todo-note">
+  <h3 class="drag-handle">To Do ✎</h3>
+  <textarea placeholder="Write a note..."></textarea>
+</div>
+
+<div class="sticky-note reminder-note" id="reminder-note">
+  <h3 class="drag-handle">Reminder ♡</h3>
+  <textarea placeholder="Write a reminder..."></textarea>
+</div>
+
+
+        </main>
+      </section>
+
+<!-- MATERIALS SCREEN -->
+<section id="materials-screen" hidden>
+
+  <header class="board-header">
+    <button class="back-button" type="button">
+      ← Back to Board
+    </button>
+
+    <h1>Materials 📎</h1>
+    <p>Personal Document Archives</p>
+  </header>
+
+  <main class="materials-page">
+
+    <div class="document-file" id="resume-file">
+      <h2>Resume</h2>
+      <p>Document 001</p>
+    </div>
+
+    <div class="document-file" id="cover-letter-file">
+      <h2>Cover Letter</h2>
+      <p>Document 002</p>
+    </div>
+
+  </main>
+
+</section>
+
+<!-- APPLICATIONS SCREEN -->
+<section id="applications-screen" hidden>
+
+  <header class="board-header">
+    <button id="back-to-board" class="back-button" type="button">
+      ← Back to Board
+    </button>
+
+    <h1>Application Records ✳</h1>
+    <p>Personal Case Files</p>
+  </header>
+
+  <main class="applications-page">
+
+    <div class="applications-toolbar">
+      <span>CONFIDENTIAL RECORDS</span>
+      <button id="new-application" type="button">
+        + New Case
+      </button>
+    </div>
+
+  
+<div class="applications-grid" id="applications-grid">
+  <!-- JavaScript will add your applications here -->
+</div>
+
+
+  </main>
+
+</section>
+
+<!-- INDIVIDUAL CASE FILE SCREEN -->
+<section id="case-file-screen" hidden>
+
+  <header class="board-header">
+    <button id="back-to-applications"
+            class="back-button"
+            type="button">
+      ← Back to Applications
+    </button>
+
+    <h1>Case Dossier ✳</h1>
+    <p>Confidential Application Record</p>
+  </header>
+
+  <main class="case-file-page">
+
+    <article class="case-document">
+
+      <div class="case-top">
+        <span>📎 CASE NO. 001</span>
+        <span>PRIVATE RECORD</span>
+      </div>
+
+      <h2 id="case-company">Example Company</h2>
+
+      <div class="case-field">
+        <strong>POSITION:</strong>
+        <span id="case-position">Research Intern</span>
+      </div>
+
+      <div class="case-field">
+        <strong>APPLICATION OPENS:</strong>
+        <span id="case-open-date">Not set</span>
+      </div>
+
+      <div class="case-field">
+        <strong>DEADLINE:</strong>
+        <span id="case-deadline">Not set</span>
+      </div>
+
+      <div class="case-field">
+        <strong>STATUS:</strong>
+        <span id="case-status">Wishlist</span>
+      </div>
+
+      <h3>01 / CASE SUMMARY</h3>
+      <p id="case-summary">
+        Job description and requirements go here.
+      </p>
+
+      <h3>02 / INVESTIGATOR'S NOTES</h3>
+      <p id="case-notes">
+        Personal notes go here.
+      </p>
+
+      <div class="case-stamp">
+        CONFIDENTIAL
+      </div>
+
+<div class="case-actions">
+  <button id="edit-case-button" type="button">
+    ✎ Edit Case
+  </button>
+
+  <button id="delete-case-button" type="button">
+    × Delete Case
+  </button>
+</div>
+
+    </article>
+
+  </main>
+
+</section>
+
+<!-- NEW APPLICATION FORM -->
+<section id="new-case-screen" hidden>
+
+  <header class="board-header">
+    <button id="back-from-new-case"
+            class="back-button"
+            type="button">
+      ← Back to Applications
+    </button>
+
+    <h1>New Case File ✳</h1>
+    <p>Open a New Investigation</p>
+  </header>
+
+  <main class="case-file-page">
+
+    <form id="new-case-form" class="case-document">
+
+      <div class="case-top">
+        <span>📎 NEW INVESTIGATION</span>
+        <span>PRIVATE RECORD</span>
+      </div>
+
+      <h2>Open a New Case ✎</h2>
+
+      <label for="company-input">COMPANY NAME</label>
+      <input id="company-input" type="text"
+             placeholder="e.g. Allen Institute" required>
+
+      <label for="position-input">POSITION</label>
+      <input id="position-input" type="text"
+             placeholder="e.g. Research Intern" required>
+
+      <label for="open-date-input">APPLICATION OPENS</label>
+      <input id="open-date-input" type="date">
+
+      <label for="deadline-input">APPLICATION DEADLINE</label>
+      <input id="deadline-input" type="date">
+
+      <label for="status-input">STATUS</label>
+      <select id="status-input">
+        <option value="Wishlist">Wishlist</option>
+        <option value="Applied">Applied</option>
+        <option value="Interview">Interview</option>
+        <option value="Offer">Offer</option>
+        <option value="Rejected">Rejected</option>
+      </select>
+
+      <label for="summary-input">CASE SUMMARY</label>
+      <textarea id="summary-input"
+                placeholder="Job description, requirements..."></textarea>
+
+      <label for="notes-input">INVESTIGATOR'S NOTES</label>
+      <textarea id="notes-input"
+                placeholder="Write your notes here..."></textarea>
+
+      <button id="save-case-button" type="submit">
+        + Add to Files
+      </button>
+
+    </form>
+
+  </main>
+
+</section>
+
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

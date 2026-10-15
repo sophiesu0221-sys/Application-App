@@ -1,0 +1,817 @@
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+
+  background: white;
+  user-select: none;
+  -webkit-app-region: no-drag;
+}
+
+
+.app {
+  padding: 16px;
+}
+
+button,
+input,
+textarea,
+select {
+  -webkit-app-region: no-drag;
+  cursor: pointer;
+}
+
+
+/* Keep hidden screens hidden */
+[hidden] {
+  display: none !important;
+}
+
+/* Main board */
+#tracker-screen {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fafaf8;
+}
+
+/* Board heading */
+.board-header {
+  padding: 20px 30px;
+  border-bottom: 1px solid #333;
+  background-color: #fafaf8;
+}
+
+.board-header h1 {
+  font-family: Georgia, serif;
+  font-size: 24px;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.board-header p {
+  font-family: monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-bottom: 0;
+}
+
+/* Graph-paper workspace */
+.board {
+  position: relative;
+  width: 100%;
+  min-height: 700px;
+
+  background-color: #fafaf8;
+  background-image:
+    linear-gradient(#e5e5e5 1px, transparent 1px),
+    linear-gradient(90deg, #e5e5e5 1px, transparent 1px);
+
+  background-size: 24px 24px;
+}
+
+/* FOLDER STACK */
+
+.folder-stack {
+  position: absolute;
+  top: 120px;
+  left: 80px;
+  width: 350px;
+  height: 250px;
+}
+
+/* Individual folders */
+
+.folder {
+  position: absolute;
+  width: 100%;
+  height: 160px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* Materials stays behind Applications */
+
+.materials-folder {
+  top: 0;
+  z-index: 1;
+}
+
+/* Applications stays in front */
+
+.applications-folder {
+  top: 65px;
+  z-index: 3;
+}
+
+/* Tabs */
+
+.folder-tab {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  z-index: 3;
+
+  padding: 8px 16px;
+  background: #eeeeea;
+  border: 1px solid #333;
+  border-bottom: none;
+  border-radius: 7px 7px 0 0;
+
+  font-family: monospace;
+  font-size: 12px;
+}
+
+/* Applications tab is offset */
+
+.applications-folder .folder-tab {
+  left: 145px;
+}
+
+/* Folder front */
+
+.folder-front {
+  position: absolute;
+  top: 29px;
+  width: 100%;
+  height: 125px;
+
+  background: #eeeeea;
+  border: 1px solid #333;
+  border-radius: 4px;
+
+  z-index: 2;
+}
+
+/* Papers inside folder */
+
+.folder-contents {
+  position: absolute;
+  top: 29px;
+  left: 40px;
+  width: 75%;
+  height: 100px;
+  z-index: 1;
+}
+
+.materials-folder .folder-contents {
+  left: 55px;
+}
+
+.paper {
+  position: absolute;
+  width: 80%;
+  height: 90px;
+  padding: 12px;
+
+  background: #fffefa;
+  border: 1px solid #999;
+  font-family: monospace;
+  font-size: 12px;
+
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.paper:nth-child(2) {
+  left: 30px;
+  top: 8px;
+}
+
+/* Folder hover: move upward */
+
+.folder:hover {
+  transform: translateY(-25px);
+}
+
+/* Keep Applications above Materials */
+.materials-folder:hover {
+  z-index: 1;
+}
+
+.applications-folder:hover {
+  z-index: 3;
+}
+
+/* First paper slides out farther */
+
+.folder:hover .paper:first-child {
+  transform: translateY(-50px) rotate(-3deg);
+}
+
+/* Second paper slides out */
+
+.folder:hover .paper:nth-child(2) {
+  transform: translateY(-43px) rotate(3deg);
+}
+
+
+/* CALENDAR */
+
+.calendar-widget {
+  position: absolute;
+  top: 440px;
+  left: 80px;
+  width: 230px;
+  min-height: 250px;
+  padding: 20px;
+  background: #fafaf8;
+  border: 1px solid #333;
+  border-radius: 3px;
+}
+
+.calendar-header {
+  cursor: grab;
+  touch-action: none;
+  -webkit-app-region: no-drag;
+}
+
+.calendar-header:active {
+  cursor: grabbing;
+}
+
+/* STICKY NOTES */
+
+.sticky-note {
+  position: absolute;
+  width: 200px;
+  height: 180px;
+  padding: 15px;
+  background: #fff4c7;
+  border: 1px solid #d5c99e;
+  box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.08);
+}
+
+/* First note */
+
+.sticky-note:nth-of-type(3) {
+  top: 100px;
+  right: 100px;
+  transform: rotate(3deg);
+}
+
+/* Second note */
+
+.sticky-note:nth-of-type(4) {
+  top: 340px;
+  right: 130px;
+  transform: rotate(-3deg);
+}
+
+/* Note text */
+
+.sticky-note h3 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+.sticky-note textarea {
+  width: 100%;
+  height: 110px;
+  border: none;
+  background: transparent;
+  resize: none;
+  outline: none;
+  font-family: Georgia, serif;
+  font-size: 14px;
+}
+
+
+/* Draggable sticky note headings */
+
+.drag-handle {
+  cursor: grab;
+  touch-action: none;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.sticky-note {
+  z-index: 4;
+}
+
+.sticky-note textarea {
+  user-select: text;
+  cursor: text;
+}
+
+
+/* Calendar styling */
+
+.calendar-widget {
+  background: #fffefa;
+  border: 1px solid #333;
+  padding: 15px;
+  width: 250px;
+  z-index: 4;
+}
+
+.calendar-header {
+  text-align: center;
+  font-family: monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding: 8px;
+  border-bottom: 1px solid #aaa;
+
+  cursor: grab;
+  touch-action: none;
+}
+
+.calendar-header:active {
+  cursor: grabbing;
+}
+
+.calendar-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 12px 0;
+}
+
+.calendar-navigation h3 {
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: 16px;
+}
+
+.calendar-navigation button {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+#calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  text-align: center;
+}
+
+.calendar-day {
+  padding: 6px 0;
+  font-family: monospace;
+  font-size: 11px;
+}
+
+.calendar-footer {
+  border-top: 1px dashed #aaa;
+  margin-top: 12px;
+  padding-top: 8px;
+  font-family: monospace;
+  font-size: 10px;
+}
+
+.calendar-footer p {
+  margin: 5px 0;
+}
+
+
+/* Weekday labels */
+
+.weekday {
+  font-weight: bold;
+  color: #777;
+}
+
+/* Highlight today's date */
+
+.calendar-day.today {
+  border: 1px solid #333;
+  border-radius: 50%;
+  background-color: #eeeeea;
+}
+
+
+/* MATERIALS PAGE */
+
+.materials-page {
+  display: flex;
+  gap: 30px;
+  padding: 60px;
+  min-height: 650px;
+
+  background-color: #fafaf8;
+  background-image:
+    linear-gradient(#e5e5e5 1px, transparent 1px),
+    linear-gradient(90deg, #e5e5e5 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Lined document papers */
+
+.document-file {
+  position: relative;
+  width: 220px;
+  height: 290px;
+  padding: 35px 20px;
+
+  background-color: #fffefa;
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 27px,
+      #d5dce0 28px
+    );
+
+  border: 1px solid #999;
+  box-shadow: 5px 6px 0 rgba(0, 0, 0, 0.08);
+
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.document-file:hover {
+  transform: translateY(-8px) rotate(-2deg);
+}
+
+.document-file h2 {
+  font-family: Georgia, serif;
+  font-size: 20px;
+  margin: 0;
+}
+
+.document-file p {
+  font-family: monospace;
+  font-size: 11px;
+  color: #777;
+}
+
+/* Back button */
+
+.back-button {
+  background: transparent;
+  border: 1px solid #333;
+  padding: 8px 12px;
+  margin-bottom: 15px;
+  font-family: monospace;
+  cursor: pointer;
+}
+
+
+/* APPLICATIONS DIRECTORY */
+
+.applications-page {
+  min-height: 650px;
+  padding: 35px;
+
+  background-color: #fafaf8;
+  background-image:
+    linear-gradient(#e5e5e5 1px, transparent 1px),
+    linear-gradient(90deg, #e5e5e5 1px, transparent 1px);
+
+  background-size: 24px 24px;
+}
+
+/* Top toolbar */
+
+.applications-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+
+  font-family: monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+#new-application {
+  background: #fffefa;
+  border: 1px solid #333;
+  padding: 10px 15px;
+  font-family: monospace;
+  cursor: pointer;
+}
+
+/* Paper layout */
+
+.applications-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(180px, 1fr)
+  );
+  gap: 25px;
+}
+
+/* Individual notebook paper */
+
+.application-paper {
+  position: relative;
+  min-height: 240px;
+  padding: 30px 18px;
+  text-align: left;
+
+  background-color: #fffefa;
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 26px,
+      #d5dce0 27px
+    );
+
+  border: 1px solid #999;
+  box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.08);
+
+  font-family: Georgia, serif;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.application-paper:hover {
+  transform: translateY(-8px) rotate(-2deg);
+}
+
+.application-paper h2 {
+  margin: 15px 0 5px;
+  font-size: 19px;
+}
+
+.application-paper p {
+  font-family: monospace;
+  font-size: 11px;
+}
+
+.paperclip {
+  font-size: 20px;
+}
+
+.case-status {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 5px 8px;
+
+  border: 1px solid #666;
+  background: #fffefa;
+
+  font-family: monospace;
+  font-size: 10px;
+}
+
+/* INDIVIDUAL CASE FILE */
+
+.case-file-page {
+  min-height: 700px;
+  padding: 45px 20px;
+
+  background-color: #fafaf8;
+  background-image:
+    linear-gradient(#e5e5e5 1px, transparent 1px),
+    linear-gradient(90deg, #e5e5e5 1px, transparent 1px);
+
+  background-size: 24px 24px;
+}
+
+/* Notebook paper */
+
+.case-document {
+  position: relative;
+  width: 100%;
+  max-width: 550px;
+  min-height: 620px;
+  margin: 0 auto;
+  padding: 40px;
+
+  background-color: #fffefa;
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 29px,
+      #d5dce0 30px
+    );
+
+  border: 1px solid #999;
+  box-shadow: 6px 7px 0 rgba(0, 0, 0, 0.08);
+}
+
+/* Top of document */
+
+.case-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+
+  font-family: monospace;
+  font-size: 10px;
+  color: #777;
+}
+
+/* Company heading */
+
+.case-document h2 {
+  margin: 35px 0 25px;
+  font-family: Georgia, serif;
+  font-size: 28px;
+}
+
+/* Information fields */
+
+.case-field {
+  padding: 8px 0;
+  border-bottom: 1px dashed #aaa;
+
+  font-family: monospace;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.case-field strong {
+  margin-right: 8px;
+}
+
+/* Notes and summary */
+
+.case-document h3 {
+  margin-top: 35px;
+  font-family: monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.case-document p {
+  font-family: Georgia, serif;
+  font-size: 14px;
+  line-height: 2;
+  white-space: pre-wrap;
+}
+
+/* Confidential stamp */
+
+.case-stamp {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 8px 15px;
+
+  border: 2px solid #555;
+  transform: rotate(-5deg);
+
+  font-family: monospace;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+
+/* NEW CASE FORM */
+
+#new-case-form label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 7px;
+
+  font-family: monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+#new-case-form input,
+#new-case-form select,
+#new-case-form textarea {
+  display: block;
+  width: 100%;
+  padding: 10px;
+
+  background: #fffefa;
+  border: 1px solid #999;
+
+  font-family: monospace;
+  font-size: 12px;
+  color: #333;
+}
+
+#new-case-form textarea {
+  min-height: 90px;
+  resize: vertical;
+  cursor: text;
+}
+
+#new-case-form input {
+  cursor: text;
+}
+
+#new-case-form select {
+  cursor: pointer;
+}
+
+#save-case-button {
+  margin-top: 30px;
+  padding: 12px 20px;
+
+  background: #fffefa;
+  border: 1px solid #333;
+
+  font-family: monospace;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+#save-case-button:hover {
+  background: #eeeeea;
+}
+
+#new-case-form {
+  height: auto;
+}
+
+
+/* Make sure the New Case screen displays correctly */
+
+#new-case-screen {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fafaf8;
+}
+
+#new-case-screen .case-document {
+  display: block;
+  visibility: visible;
+}
+
+
+/* CASE ACTION BUTTONS */
+
+.case-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 35px;
+}
+
+.case-actions button {
+  padding: 10px 15px;
+  background: #fffefa;
+  border: 1px solid #333;
+  font-family: monospace;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.case-actions button:hover {
+  background: #eeeeea;
+}
+
+#delete-case-button {
+  border-color: #b67e7e;
+  color: #9b5555;
+}
+
+/* APPLICATION CALENDAR DATES */
+
+.calendar-day.application-opening {
+  color: #527b91;
+  font-weight: bold;
+}
+
+.calendar-day.application-opening::after {
+  content: "○";
+  display: block;
+  font-size: 10px;
+}
+
+.calendar-day.application-deadline {
+  color: #b66b71;
+  font-weight: bold;
+}
+
+.calendar-day.application-deadline::after {
+  content: "✳";
+  display: block;
+  font-size: 10px;
+}
+
+/* Dates that have both events */
+
+.calendar-day.application-opening.application-deadline::after {
+  content: "○ ✳";
+}
+
+
+/* CALENDAR HOVER DETAILS */
+
+.calendar-day.has-event {
+  cursor: pointer;
+}
+
+#calendar-tooltip {
+  margin-top: 12px;
+  padding: 10px;
+  background: #fff4c7;
+  border: 1px solid #d5c99e;
+  font-family: monospace;
+  font-size: 11px;
+  line-height: 1.6;
+  white-space: pre-line;
+}
