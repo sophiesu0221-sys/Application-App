@@ -5,6 +5,7 @@ This is operated by Electron.
 
 To start run by putting this into the terminal:
 npm ci
-nom start
+and
+npm start
 
 Project is currently still under development.
